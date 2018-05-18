@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function getExplore(ua) {
+    var m = "match";
+    try {
+      var explore = {
+        'uc': ' ubrowser|ucbrowser|ucweb',
+        'baidu': 'bidubrowser|baiduhd|baidubrowser',
+        'inqq':' qq\/',
+        'qq': 'qqbrowser|mqqbrowser',
+        '2345': '2345explorer|Mb2345Browser',
+        'weixin': 'micromessenger',
+        'lbbrowser': 'lbbrowser|liebaofast',
+        '360': '360se|360ee|QHBrowser',
+        'firefox': 'firefox|FxiOS',
+        'maxthon': 'maxthon|mxbrowser|MXiOS',
+        'theworld': 'theworld',
+        'sougou': 'metasr|sogoumobilebrowser',
+        'edge': ' edge',
+        'kwe': ' kwe',
+        'sleipnir':'sleipnir',
+        'xiaomi':'miuiBrowser',
+        'baiduboxapp':'baiduboxapp',
+        'opera':'opr|opios',
+        'snclient-wap':'SNCLIENT-WAP'
+      };
+      var browser = "unknown";
+      for (var k in explore) {
+        var pa = new RegExp("(?:" + explore[k] + ") ?\\/?(\\d+\\.*\\d*)?", "i");
+        if (pa.test(ua)) {
+          browser = k + " " + (RegExp.$1 ? RegExp.$1: "");
+          break;
+        }
+      }
+      if (browser == "unknown") {
+        var s;
+        if (s = ua[m](/(msie|ie) ([\d.]+)/i)) { //ie
+          browser = 'msie ' + s[2];
+        }
+        if ((s = ua[m](/(chrome|CriOS)\/([\d.]+)/i))) { //chrome
+          browser = 'chrome ' + s[2];
+        }
+        if (s = ua[m](/opera.([\d.]+)/i)) { //opera
+          browser = 'opera ' + s[1];
+        }
+        if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
+          browser = 'safari ' + s[1];
+        }
+      }
+      return browser;
+    } catch(e) {
+        return "unknown";
+    }
+  }
+  alert(navigator.userAgent);
+  alert(getExplore(navigator.userAgent));
+</script>
