@@ -6,8 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<style type="text/css">
+  #box1,#box2{
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px black solid;
+    padding: 10px;
+  }
+</style>
 <body>
-  
+  <div>
+    <p>你的浏览器是：</p>
+    <div id="box1"></div>
+  </div>
+  <div>
+    <p>你的UA是：</p>
+    <div id="box2"></div>
+  </div>
 </body>
 </html>
 <script>
@@ -63,6 +78,10 @@
         return "unknown";
     }
   }
-  alert(navigator.userAgent);
-  alert(getExplore(navigator.userAgent));
+  var box1 = document.getElementById("box1");
+  var box2 = document.getElementById("box2");
+  box1.innerHTML = getExplore(navigator.userAgent);
+  box2.innerHTML = navigator.userAgent;
+  // alert(navigator.userAgent);
+  // alert(getExplore(navigator.userAgent));
 </script>
