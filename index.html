@@ -26,30 +26,35 @@
 </body>
 </html>
 <script>
-  function getExplore(ua) {
+  function getExplore() {
+    var ua = navigator.userAgent;
     var m = "match";
     try {
       var explore = {
-        'uc': ' ubrowser|ucbrowser|ucweb',
-        'baidu': 'bidubrowser|baiduhd|baidubrowser',
-        'inqq':' qq\/',
-        'weixin': 'micromessenger',
-        'qq': 'qqbrowser|mqqbrowser',
-        '2345': '2345explorer|Mb2345Browser',
-        'lbbrowser': 'lbbrowser|liebaofast',
-        '360': '360se|360ee|QHBrowser',
-        'firefox': 'firefox|FxiOS',
-        'maxthon': 'maxthon|mxbrowser|MXiOS',
-        'theworld': 'theworld',
-        'sougou': 'metasr|sogoumobilebrowser',
-        'edge': ' edge',
-        'kwe': ' kwe',
-        'sleipnir':'sleipnir',
-        'xiaomi':'miuiBrowser',
-        'baiduboxapp':'baiduboxapp',
-        'opera':'opr|opios',
-        'snclient-wap':'SNCLIENT-WAP'
-      };
+			'uc': ' ubrowser|ucbrowser|ucweb',
+			'baidu': 'bidubrowser|baiduhd|baidubrowser',
+			'weixin': 'micromessenger',
+			'inqq':' qq\/',
+			'qq': 'qqbrowser|mqqbrowser',
+			'2345': '2345explorer|Mb2345Browser',
+			'lbbrowser': 'lbbrowser|liebaofast',
+			'360': '360se|360ee|QHBrowser|360Browser|Qihoo NewsSDK|QihooBrowser',
+			'firefox': 'firefox|FxiOS',
+			'maxthon': 'maxthon|mxbrowser|MXiOS',
+			'theworld': 'theworld',
+			'sougou': 'metasr|sogoumobilebrowser',
+			'edge': ' edge',
+			'kwe': ' kwe',
+			'sleipnir':'sleipnir',
+			'xiaomi':'miuiBrowser',
+			'oppo':'OppoBrowser',
+			'vivo':'VivoBrowser',
+			'baiduboxapp':'baiduboxapp',
+			'opera':'opr|opios',
+			'snclient-wap':'SNCLIENT-WAP',
+			'pptv':' PPTV ',
+			'yifubao': 'SNYifubao'
+		};
       var browser = "unknown";
       for (var k in explore) {
         var pa = new RegExp("(?:" + explore[k] + ") ?\\/?(\\d+\\.*\\d*)?", "i");
@@ -80,7 +85,7 @@
   }
   var box1 = document.getElementById("box1");
   var box2 = document.getElementById("box2");
-  box1.innerHTML = getExplore(navigator.userAgent);
+  box1.innerHTML = getExplore();
   box2.innerHTML = navigator.userAgent;
   // alert(navigator.userAgent);
   // alert(getExplore(navigator.userAgent));
