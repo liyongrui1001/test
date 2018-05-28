@@ -74,9 +74,11 @@
         if (s = ua[m](/opera.([\d.]+)/i)) { //opera
           browser = 'opera ' + s[1];
         }
-        if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
-          browser = 'safari ' + s[1];
-        }
+        if(!/( Android )/i.test(ua)){ // 如果是安卓平台，则不去判断safari
+					if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
+						browser = 'safari ' + s[1];
+					}
+				}
       }
       return browser;
     } catch(e) {
