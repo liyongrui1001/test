@@ -23,6 +23,7 @@
     <p>你的UA是：</p>
     <div id="box2"></div>
   </div>
+	<div id="box3"></div>
 </body>
 </html>
 <script>
@@ -87,6 +88,8 @@
   }
   var box1 = document.getElementById("box1");
   var box2 = document.getElementById("box2");
+	var box3 = document.getElementById("box3");
   box1.innerHTML = getExplore();
   box2.innerHTML = navigator.userAgent;
+	box3.innerHTML = new Date().getTime();
 </script>
