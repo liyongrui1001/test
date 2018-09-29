@@ -1,95 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Examples</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="autoclick" content="true">
+	<meta name="pageid" content="123">
+	<meta name="siteid" content="789">
+	<meta name="sadelay" content="500">
 </head>
+<link rel="stylesheet" href="./bootstrap.css">
 <style type="text/css">
-  #box1,#box2{
-    font-size: 20px;
-    font-weight: bold;
-    border: 1px black solid;
-    padding: 10px;
-  }
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	body {
+		background: #2c893a;
+	}
+
+	.d-wapper {
+		width: 1200px;
+		margin: 50px auto;
+	}
+	.container{
+		margin: 50px auto;
+	}
+	.btn{
+		height: 30px;
+		line-height: 30px;
+		padding: 0 10px;
+		margin: 10px;
+		background: #02bafa;
+		border: 1px #26bbdb solid;
+		border-radius: 3px;
+		color: #000;
+		display: inline-block;
+		text-decoration: none;
+		font-size: 20px;
+		outline: none;
+	}
 </style>
+<script src="./da_opt.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 <body>
-  <div>
-    <p>你的浏览器是：</p>
-    <div id="box1"></div>
-  </div>
-  <div>
-    <p>你的UA是：</p>
-    <div id="box2"></div>
-  </div>
-	<div id="box3"></div>
+	<!-- <div id="charts" class="d-wapper" sap-modid="11111"> -->
+	<div id="charts" class="container" sap-modid="11111">
+		<a href="javascript:;" class="btn" id="btn" name="btn" sa-data="{'a':'1','b':'2','c':'3'}">点击日志</a>
+		<a href="javascript:;" class="btn" id="btn1" name="btn">手动发访问</a>
+		<a href="javascript:;" class="btn" id="btn2" name="btn" sap-modid="test">订单日志</a>
+		<a href="javascript:;" class="btn" id="btn3" name="btn">注册日志</a>
+		<a href="javascript:;" class="btn" id="btn4" name="btn">搜索日志</a>
+		<a href="javascript:;" class="btn" id="btn5" name="btn">库存日志</a>
+		<a href="javascript:;" class="btn" id="btn6" name="btn">自定义日志</a>
+		<a href="./test.html" class="btn" >跳转页面</a>
+    
+		<input type="hidden" id="resourceType" value="wap" />
+		<input type="hidden" id="pagename" value="pgcate=10001;pgtitle=首页;" />
+		<input type="hidden" id="ssa-abtest" value="WAP_wap_ABB" />
+		<input type="hidden" id="ga_itemDataBean_itemID" value="178126076" />
+		<input type="hidden" id="mdmCityId" value="9173" />
+		<input type="hidden" id="deliverytype" value="3" />
+		<input type="hidden" id="operatetype" value="1" />
+		<input type="hidden" id="productStatus" value="1" />
+		<input type="hidden" id="productStatusDesc" value="-1" />
+		<input type="hidden" id="shop_code" value="shop_code" />
+		<input type="hidden" id="suppliernewID" value="0070208643" />
+		<input type="hidden" id="vendorType" value="2" />
+		<input type="hidden" id="idsLoginUserIdLastTime" value="177****2601" />
+	</div>
 </body>
+
 </html>
 <script>
-  function getExplore() {
-    var ua = navigator.userAgent;
-    var m = "match";
-    try {
-      var explore = {
-			'uc': ' ubrowser|ucbrowser|ucweb',
-			'baidu': 'bidubrowser|baiduhd|baidubrowser',
-			'weixin': 'micromessenger',
-			'inqq':' qq\/',
-			'qq': 'qqbrowser|mqqbrowser',
-			'2345': '2345explorer|Mb2345Browser',
-			'lbbrowser': 'lbbrowser|liebaofast',
-			'360': '360se|360ee|QHBrowser|360Browser|Qihoo NewsSDK|QihooBrowser',
-			'firefox': 'firefox|FxiOS',
-			'maxthon': 'maxthon|mxbrowser|MXiOS',
-			'theworld': 'theworld',
-			'sougou': 'metasr|sogoumobilebrowser',
-			'edge': ' edge',
-			'kwe': ' kwe',
-			'sleipnir':'sleipnir',
-			'xiaomi':'miuiBrowser',
-			'oppo':'OppoBrowser',
-			'vivo':'VivoBrowser',
-			'baiduboxapp':'baiduboxapp',
-			'opera':'opr|opios',
-			'snclient-wap':'SNCLIENT-WAP',
-			'pptv':' PPTV ',
-			'yifubao': 'SNYifubao'
-		};
-      var browser = "unknown";
-      for (var k in explore) {
-        var pa = new RegExp("(?:" + explore[k] + ") ?\\/?(\\d+\\.*\\d*)?", "i");
-        if (pa.test(ua)) {
-          browser = k + " " + (RegExp.$1 ? RegExp.$1: "");
-          break;
-        }
-      }
-      if (browser == "unknown") {
-        var s;
-        if (s = ua[m](/(msie|ie) ([\d.]+)/i)) { //ie
-          browser = 'msie ' + s[2];
-        }
-        if ((s = ua[m](/(chrome|CriOS)\/([\d.]+)/i))) { //chrome
-          browser = 'chrome ' + s[2];
-        }
-        if (s = ua[m](/opera.([\d.]+)/i)) { //opera
-          browser = 'opera ' + s[1];
-        }
-        if(!/( Android )/i.test(ua)){ // 如果是安卓平台，则不去判断safari
-					if (s = ua[m](/version\/([\d.]+).*safari/i)) { //safari
-						browser = 'safari ' + s[1];
-					}
-				}
-      }
-      return browser;
-    } catch(e) {
-        return "unknown";
-    }
+	function $(id){
+		return document.getElementById(id);
+	}
+	//点击
+	$("btn").onclick=function(){
+		// try {
+			sa.click.sendDatasIndex(this);
+			// SAUP.sendLogData("click",{tag:this,ext:{}});
+		// } catch(e){ }
+	}
+	//搜索
+	// if(typeof(_searchPush) == 'function'){
+	// 	_searchPush(0, "", "", 1);
+	// }
+	$("btn4").onclick=function(){
+		if(typeof(_searchDataSaPush) == 'function'){
+			_searchDataSaPush(20, "搜索词", "扩展词", 3, "lyr");
+		}
+	}
+
+	//库存
+	$("btn5").onclick=function(){
+		if(typeof(_dapush)=="function"){
+			_dapush();
+		}
+	}
+	
+	//曝光
+	// if (typeof _analyseExpoTags == "function") {
+	//   _analyseExpoTags("div", "search_")
+	// }
+
+	//自定义
+	$("btn6").onclick=function(){
+		try {
+			if (saCustomDataUtil && typeof (saCustomDataUtil.sendData) == "function") {
+				saCustomDataUtil.sendData("change", "a,b,c", "1,2,3")
+			}
+		} catch (e) { }
+	}
+
+	//订单
+	$("btn2").onclick=function(){
+		try { 
+     	if (_sendOrderInfo && (typeof (_sendOrderInfo)).toLowerCase() == 'function') { 
+        _sendOrderInfo("20180508", "000000000610662414_1_21.90,000000010508201166_1_389.00");
+     	} 
+		} catch (e) { }
+	}
+	//注册
+	$("btn3").onclick=function(){
+		_sendRegisterDatas("88388897")
+	}
+	// //页面异常
+	// //初始化方法
+	// sa.openAPI=sa.openAPI||{};
+	// sa.initTrackerConfig();
+
+	// //参数设置方法
+	// var param={
+	// //必传参数
+	// bid:"bid",                         //产品线标识,建议传产品线英文首字母简称、如需细分则以"-"分隔，最多两级
+	// error_detail:JSON.stringify({url:"error_detail"}),       //报错详情，建议传报错内容英文首字母简称、如传中文则会默认urlencode编码
+	// //建议传的参数
+	// error_type:"error_type",           //错误类型，0为“系统异常”、1为“业务异常”、2为“页面检查错误
+	// error_code:"error_code",           //错误代码
+	// //非必传参数
+	// type_name:"type_name",             //接口名称
+	// member_id:"member_id",             //会员编码，如易购网站需要、则从cookie里取、变量名为custno
+	// // member_level:"member_level",       //会员等级，如易购网站需要、则从cookie里取、变量名为custLevel
+	// region:"region"                    //区域，如易购网站需要、则从cookie里取、变量名为SN_CITY
+	// };
+	// //传参方法
+	// sa.openAPI.sendMsgV2(param);
+		
+	// 站内曝光
+	// if (saExportUtil && typeof(saExportUtil.sendCustomExpoData) == "function") {
+  //   saExportUtil.sendCustomExpoData("曝光坑位01:曝光元素信息01,曝光坑位02:曝光元素信息02,曝光坑位03:曝光元素信息03", 1);
+	// }
+	$("btn1").onclick=function(){
+		try {
+			if (_saPageViewInit && (typeof (_saPageViewInit)).toLowerCase() == 'function') {
+				_saPageViewInit();
+			}
+		} catch (e) { }
   }
-  var box1 = document.getElementById("box1");
-  var box2 = document.getElementById("box2");
-	var box3 = document.getElementById("box3");
-  box1.innerHTML = getExplore();
-  box2.innerHTML = navigator.userAgent;
-	box3.innerHTML = new Date().toUTCString();
 </script>
