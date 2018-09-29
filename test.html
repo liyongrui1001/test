@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Examples</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<!-- <meta name="autoclick" content="true"> -->
+	<meta name="pageid" content="123">
+	<meta name="siteid" content="789">
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<style type="text/css">
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	body {
+		/* background: #2c3589; */
+		background: #C7EDCC;
+	}
+
+	.d-wapper {
+		width: 1200px;
+		margin: 50px auto;
+	}
+	.container{
+		margin: 50px auto;
+	}
+	.btn{
+		height: 30px;
+		line-height: 30px;
+		padding: 0 10px;
+		margin: 10px;
+		background: #02bafa;
+		border: 1px #26bbdb solid;
+		border-radius: 3px;
+		color: #000;
+		display: inline-block;
+		text-decoration: none;
+		font-size: 20px;
+		outline: none;
+	}
+</style>
+<script src="./da_opt.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+
+<body>
+	<!-- <div id="charts" class="d-wapper"> -->
+	<div id="charts" class="container">
+		<a href="javascript:;" class="btn" id="btn" name="btn" sa-data="{'a':'1','b':'2','c':'3'}">点击日志</a>
+		<a href="javascript:;" class="btn" id="btn1" name="btn">手动发访问</a>
+		<a href="javascript:;" class="btn" id="btn2" name="btn">订单日志</a>
+		<a href="javascript:;" class="btn" id="btn3" name="btn">注册日志</a>
+		<a href="javascript:;" class="btn" id="btn4" name="btn">搜索日志</a>
+		<a href="javascript:;" class="btn" id="btn5" name="btn">库存日志</a>
+		<a href="javascript:;" class="btn" id="btn6" name="btn">自定义日志</a>
+		<a href="./index.html" class="btn" >跳转页面</a>
+		<input type="hidden" id="resourceType" value="mweb" />
+		<input type="hidden" id="pagename" value="pgcate=10008;prdtp=00001;pgtitle=普通四级页;prdid=161001140;shopid=0070056897;supid=0070056897;actype=;" />
+		<input type="hidden" id="ssa-abtest" value="WAP_wap_ABB" />
+		<input type="hidden" id="ga_itemDataBean_itemID" value="178126076" />
+		<input type="hidden" id="mdmCityId" value="9173" />
+		<input type="hidden" id="deliverytype" value="3" />
+		<input type="hidden" id="operatetype" value="1" />
+		<input type="hidden" id="productStatus" value="1" />
+		<input type="hidden" id="productStatusDesc" value="-1" />
+		<input type="hidden" id="shop_code" value="shop_code" />
+		<input type="hidden" id="suppliernewID" value="0070208643" />
+		<input type="hidden" id="vendorType" value="2" />
+		<input type="hidden" id="idsLoginUserIdLastTime" value="177****2601" />
+	</div>
+</body>
+
+</html>
+<script>
+	function $(id){
+		return document.getElementById(id);
+	}
+	//点击
+	$("btn").onclick=function(){
+		try {
+			sa.click.sendDatasIndex(this);
+		} catch(e){ }
+	}
+	//搜索
+	// if(typeof(_searchPush) == 'function'){
+		// 	_searchPush(0, "", "", 1);
+	// }
+	$("btn4").onclick=function(){
+		if(typeof(_searchDataSaPush) == 'function'){
+			_searchDataSaPush(20, "搜索词", "扩展词", 3, 11);
+		}
+	}
+
+	//库存
+	$("btn5").onclick=function(){
+		if(typeof(_dapush)=="function"){
+			_dapush();
+		}
+	}
+	
+	//曝光
+	// if (typeof _analyseExpoTags == "function") {
+	//   _analyseExpoTags("a", "btn")
+	// }
+
+	//自定义
+	$("btn6").onclick=function(){
+		try {
+			if (saCustomDataUtil && typeof (saCustomDataUtil.sendData) == "function") {
+				saCustomDataUtil.sendData("change", "a,b,c", "1,2,3")
+			}
+		} catch (e) { }
+	}
+
+	//订单
+	$("btn2").onclick=function(){
+		try { 
+     	if (_sendOrderInfo && (typeof (_sendOrderInfo)).toLowerCase() == 'function') { 
+        _sendOrderInfo("20180508", "000000000610662414_1_21.90,000000010508201166_1_389.00");
+     	} 
+		} catch (e) { }
+	}
+	//注册
+	$("btn3").onclick=function(){
+		_sendRegisterDatas("88388897")
+	}
+
+	// //页面异常
+	// //初始化方法
+	// sa.openAPI=sa.openAPI||{};
+	// sa.initTrackerConfig();
+
+	// //参数设置方法
+	// var param={
+	// //必传参数
+	// bid:"bid",                         //产品线标识,建议传产品线英文首字母简称、如需细分则以"-"分隔，最多两级
+	// error_detail:JSON.stringify({url:"error_detail"}),       //报错详情，建议传报错内容英文首字母简称、如传中文则会默认urlencode编码
+	// //建议传的参数
+	// error_type:"error_type",           //错误类型，0为“系统异常”、1为“业务异常”、2为“页面检查错误
+	// error_code:"error_code",           //错误代码
+	// //非必传参数
+	// type_name:"type_name",             //接口名称
+	// member_id:"member_id",             //会员编码，如易购网站需要、则从cookie里取、变量名为custno
+	// // member_level:"member_level",       //会员等级，如易购网站需要、则从cookie里取、变量名为custLevel
+	// region:"region"                    //区域，如易购网站需要、则从cookie里取、变量名为SN_CITY
+	// };
+	// //传参方法
+	// sa.openAPI.sendMsgV2(param);
+		
+	$("btn1").onclick = function(){
+		try {
+			if (_saPageViewInit && (typeof (_saPageViewInit)).toLowerCase() == 'function') {
+				_saPageViewInit();
+			}
+		} catch (e) { }
+	}
+</script>
